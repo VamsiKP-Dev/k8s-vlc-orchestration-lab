@@ -216,7 +216,10 @@ Copyright © 2025 Vamsi Krishna
 
 ---
 ---
-🙌 Author
+# 🙌 **Author**
 
-Vamsi Krishna
+# **Vamsi Krishna**
+
+DevOps Engineer | Cloud | Automation | CI/CD
+GitHub: [VamsiKP-Dev](https://github.com/VamsiKP-Dev)
 ---
