@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: vlc-player-ds
+  labels:
+    app: vlc-player
+spec:
+  selector:
+    matchLabels:
+      app: vlc-player
+  template:
+    metadata:
+      labels:
+        app: vlc-player
+    spec:
+      containers:
+      - name: vlc-player
+        image: ubuntu:22.04
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            apt-get update && \
+            apt-get install -y vlc wget && \
+            echo "Downloading video..." && \
+            wget http://192.168.1.101:8001/Ashoka.mp4 -O /video.mp4 && \
+            echo "Starting VLC..." && \
+            cvlc /video.mp4 --loop
+        volumeMounts:
+          - name: video-volume
+            mountPath: /videos
+      volumes:
+        - name: video-volume
+          emptyDir: {}

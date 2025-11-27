@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vlc-player-config
+  namespace: default
+  labels:
+    app: vlc-player
+    phase: daemonset
+data:
+  vlcrc: |
+    # VLC main configuration file (headless)
+    extraintf=http
+    http-host=0.0.0.0
+    http-port=8080
+    playlist-autostart=1
+    loop=1
+
+  playlist.m3u: |
+    #EXTM3U
+    #EXTINF:-1,Sample Stream 1
+    http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+    #EXTINF:-1,Sample Stream 2
+    http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4
+    #EXTINF:-1,Sample Stream 3
+    http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4
