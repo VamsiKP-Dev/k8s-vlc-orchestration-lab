@@ -1,15 +1,10 @@
 
 ---
-
 <div align="center">
 
 # **Kubernetes VLC Orchestration Lab**
 
 ### *A Multi-Phase Learning Project for DaemonSets, StatefulSets & Kubernetes Operators*
-
-<img src="https://raw.githubusercontent.com/VamsiKP-Dev/k8s-vlc-orchestration-lab/main/.assets/project-banner.png" width="80%" />
-
-</div>
 
 ---
 
@@ -205,11 +200,8 @@ MIT License
 Copyright © 2025 Vamsi Krishna
 
 ---
+---
+🙌 Author
 
-## 🔧 **Where is the project banner image stored?**
-
-Place this file inside your repo:
-
-```
-.assets/project-banner.png
-```
+Vamsi Krishna
+---
