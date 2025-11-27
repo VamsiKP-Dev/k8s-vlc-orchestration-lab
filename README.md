@@ -1,34 +1,36 @@
-![CI](https://github.com/VamsiKP-Dev/k8s-vlc-orchestration-lab/actions/workflows/ci.yaml/badge.svg)
-
-# VLC Player Kubernetes Deployment Project
-
-This project demonstrates a comprehensive Kubernetes deployment of a VLC Player application across three progressive phases:
-
-# 📘 Kubernetes VLC Orchestration Lab
-
-### *A Multi-Phase Kubernetes Learning Project (DaemonSet → StatefulSet → Operators)*
-
-![GitHub CI](https://img.shields.io/badge/GitHub%20Actions-Pipeline-blue)
-
-## 🚀 Overview
-
-This project is a **3-phase Kubernetes Lab** that simulates orchestration of a media-processing workload (VLC-style) using:
-
-| Phase       | Kubernetes Component         | Purpose                    |
-| ----------- | ---------------------------- | -------------------------- |
-| **Phase 1** | DaemonSet                    | Run an agent on every node |
-| **Phase 2** | StatefulSet (with HPA + VPA) | Scale stateful workloads   |
-| **Phase 3** | Custom Operators + CRDs      | Extend Kubernetes API      |
-
-💡 **IMPORTANT:** VLC cannot fully run inside containers.
-This project focuses on **Kubernetes concepts**, not real VLC playback.
 
 ---
 
-# 🧱 Project Structure Diagram
+<div align="center">
+
+# **Kubernetes VLC Orchestration Lab**
+
+### *A Multi-Phase Learning Project for DaemonSets, StatefulSets & Kubernetes Operators*
+
+<img src="https://raw.githubusercontent.com/VamsiKP-Dev/k8s-vlc-orchestration-lab/main/.assets/project-banner.png" width="80%" />
+
+</div>
+
+---
+
+## 📌 **Project Overview**
+
+This repository contains a **3-phase Kubernetes hands-on lab** built around a *mock media-streaming service* using VLC-like workloads.
+It focuses on **Kubernetes concepts**, not on running actual VLC playback inside containers.
+
+✔ Demonstrates **DaemonSets**
+✔ Demonstrates **StatefulSets with autoscaling (HPA/VPA)**
+✔ Demonstrates **Custom Resource Definitions (CRDs)**
+✔ Demonstrates **Operator pattern**
+✔ Includes **Docker**, **Config**, **Secrets**, **Monitoring (Prometheus)**
+✔ Includes **Deployment automation scripts**
+
+---
+
+## 📁 **Repository Structure Diagram**
 
 ```
-k8s-vlc-orchestration-lab/
+k8s-vlc-orchestration-lab
 │
 ├── docker/
 │   ├── config/
@@ -36,101 +38,178 @@ k8s-vlc-orchestration-lab/
 │   ├── playlists/
 │   ├── scripts/
 │   ├── Dockerfile
-│   ├── docker-compose.yml
+│   ├── Dockerfile.windows
+│   └── docker-compose.yml
 │
 ├── monitoring/
 │   └── prometheus/
 │
 ├── phase1-daemonset/
-│   ├── configmap.yaml
 │   ├── daemonset.yaml
+│   ├── configmap.yaml
 │   ├── secret.yaml
 │   ├── service.yaml
 │   └── deploy.sh
 │
 ├── phase2-statefulset/
 │   ├── statefulset.yaml
-│   ├── service.yaml
+│   ├── configmap.yaml
 │   ├── hpa.yaml
 │   ├── vpa.yaml
+│   ├── service.yaml
 │   └── deploy.sh
 │
 ├── phase3-operators/
 │   ├── crds/
 │   ├── operator/
-│   ├── examples/
 │   ├── rbac/
+│   ├── examples/
 │   └── deploy.sh
 │
 ├── PROJECT_OVERVIEW.md
-└── README.md
+├── README.md
+└── deploy.sh
 ```
 
 ---
 
-# 🧪 Phase 1 — DaemonSet
+# 🌐 **Phase Breakdown**
 
-Deploys a VLC-agent placeholder on every node.
+---
 
-### Deploy:
+## **🔵 Phase 1 — Kubernetes DaemonSet**
+
+A mock VLC agent is deployed across all nodes using a **DaemonSet**.
+
+**Key Learnings:**
+
+* DaemonSet scheduling behavior
+* ConfigMap + Secret injection
+* Cluster-wide logging agent pattern
+* Node-level workloads
+
+> ⚠ VLC GUI cannot run inside Kubernetes containers.
+> This phase simulates *node-level agents*, which is valid and real-world.
+
+---
+
+## **🟢 Phase 2 — Kubernetes StatefulSet + Autoscaling**
+
+Implements a simulated media metadata service using **StatefulSet**.
+
+**Features:**
+
+* Persistent hostname & numbering
+* HorizonalPodAutoscaler (HPA)
+* VerticalPodAutoscaler (VPA)
+* Service stable network identity
+
+This teaches **scaling + identity** concepts.
+
+---
+
+## **🟣 Phase 3 — Kubernetes Operator & CRDs**
+
+Implements a Kubernetes Operator using:
+
+* Custom Resource Definitions (CRDs)
+* RBAC
+* Operator Deployment
+* Example CRD instances
+
+You learn:
+✔ Custom API design
+✔ Controller/operator deployment
+✔ Managing VLC-like workloads using custom resources
+
+---
+
+# 🏗 **How to Deploy**
+
+### **Clone Repository**
 
 ```sh
-kubectl apply -f phase1-daemonset/
+git clone https://github.com/VamsiKP-Dev/k8s-vlc-orchestration-lab.git
+cd k8s-vlc-orchestration-lab
 ```
 
-Check Pods:
+### **Deploy Phase 1**
 
 ```sh
-kubectl get pods -o wide -l app=vlc-player
+cd phase1-daemonset
+./deploy.sh
+```
+
+### **Deploy Phase 2**
+
+```sh
+cd phase2-statefulset
+./deploy.sh
+```
+
+### **Deploy Phase 3**
+
+```sh
+cd phase3-operators
+./deploy.sh
 ```
 
 ---
 
-# 📦 Phase 2 — StatefulSet
+# 🗂 **Repository Log**
 
-A distributed media-worker cluster with:
-
-* Stable network identity
-* Persistent storage
-* Auto-scaling via **HPA** and **VPA**
-
-Deploy:
-
-```sh
-kubectl apply -f phase2-statefulset/
+```
+Initial commit:
+✔ Added Docker setup
+✔ Added DaemonSet + StatefulSet manifests
+✔ Added Operator framework (CRDs, RBAC, deployment)
+✔ Added monitoring (Prometheus)
+✔ Added project overview & scripts
+✔ Added full directory structure
 ```
 
 ---
 
-# 🧬 Phase 3 — Kubernetes Operator
+# 🎯 **Why VLC?**
 
-Implements two CRDs:
-
-* **VLCPlayer**
-* **VLCPlaylist**
-
-The operator watches these CRDs and performs reconciliation.
-
-Deploy:
-
-```sh
-kubectl apply -f phase3-operators/
-```
-
-Apply CR example:
-
-```sh
-kubectl apply -f phase3-operators/examples/vlcplayer-examples.yaml
-```
-
-# 🤝 Contributions
-
-PRs welcome. Fork the repo → Make changes → Submit PR.
+VLC is used **only as a learning theme**.
+The real goal is to teach **Kubernetes orchestration patterns**, not media streaming.
 
 ---
 
-# ⭐ If you like this project
+# 🚀 **Future Enhancements**
 
-Give the repository a **Star** ⭐ on GitHub!
+* Add ArgoCD deployment examples
+* Integrate full Prometheus + Grafana dashboards
+* Implement actual Go-based operator logic
 
 ---
+
+# 🏁 Conclusion
+
+This project is a **complete Kubernetes learning lab**, covering:
+
+✔ Nodes → DaemonSets
+✔ Pods with identity → StatefulSets
+✔ Autoscaling → HPA & VPA
+✔ Extending Kubernetes → CRDs + Operator
+✔ Infrastructure config → Docker + Prometheus
+
+You can safely use this as a **portfolio project** or **resume highlight**.
+
+---
+
+# 📄 **License**
+
+MIT License
+Copyright © 2025 Vamsi Krishna
+
+---
+
+## 🔧 **Where is the project banner image stored?**
+
+Place this file inside your repo:
+
+```
+.assets/project-banner.png
+```
