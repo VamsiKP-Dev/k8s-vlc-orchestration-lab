@@ -25,45 +25,60 @@ It focuses on **Kubernetes concepts**, not on running actual VLC playback inside
 ## 📁 **Repository Structure Diagram**
 
 ```
-k8s-vlc-orchestration-lab
-│
-├── docker/
+Liveproject2/
+│── docker/
 │   ├── config/
+│   │   └── env.conf
 │   ├── media/
 │   ├── playlists/
 │   ├── scripts/
+│   │   ├── start-vlc.ps1
+│   │   └── start-vlc.sh
+│   ├── docker-compose.yml
 │   ├── Dockerfile
 │   ├── Dockerfile.windows
-│   └── docker-compose.yml
+│   ├── healthcheck.ps1
+│   ├── healthcheck.sh
 │
-├── monitoring/
+│── monitoring/
 │   └── prometheus/
+│       └── prometheus.yaml
+│   └── README.md
 │
-├── phase1-daemonset/
-│   ├── daemonset.yaml
+│── phase1-daemonset/
 │   ├── configmap.yaml
+│   ├── daemonset.yaml
+│   ├── deploy.sh
 │   ├── secret.yaml
 │   ├── service.yaml
-│   └── deploy.sh
+│   └── README.md
 │
-├── phase2-statefulset/
-│   ├── statefulset.yaml
+│── phase2-statefulset/
 │   ├── configmap.yaml
+│   ├── deploy.sh
 │   ├── hpa.yaml
-│   ├── vpa.yaml
+│   ├── README.md
 │   ├── service.yaml
-│   └── deploy.sh
+│   ├── statefulset.yaml
+│   └── vpa.yaml
 │
-├── phase3-operators/
+│── phase3-operators/
 │   ├── crds/
-│   ├── operator/
-│   ├── rbac/
+│   │   ├── vlcplayer-crd.yaml
+│   │   └── vlcplaylist-crd.yaml
 │   ├── examples/
-│   └── deploy.sh
+│   │   └── vlcplayer-examples.yaml
+│   ├── operator/
+│   │   └── deployment.yaml
+│   ├── rbac/
+│   │   └── rbac.yaml
+│   ├── deploy.sh
+│   └── README.md
 │
 ├── PROJECT_OVERVIEW.md
-├── README.md
-└── deploy.sh
+├── deploy.sh
+└── README.md
+
 ```
 
 ---
